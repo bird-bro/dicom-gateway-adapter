@@ -1,0 +1,32 @@
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'application'
+
+    sourceCompatibility = 11
+    targetCompatibility = 11
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://packages.aliyun.com/maven/repository/2006123-release-E5ueqt/'
+            credentials {
+                username '5ec22f39723771c6a5cbeb92'
+                password 'B3JvvP(aVxN7'
+            }}
+        maven { url 'http://maven.dcm4che.org/' }
+        maven{ url 'https://repo.maven.apache.org/maven2'}
+    }
+
+    dependencies {
+        annotationProcessor 'org.projectlombok:lombok:1.18.20'
+        compile 'ch.qos.logback:logback-core:1.2.3'
+        compile 'org.slf4j:slf4j-simple:1.7.25'
+        compile 'org.projectlombok:lombok:1.18.20'
+        compile 'cn.hutool:hutool-http:5.6.5'
+        compile "org.json:json:20210307"
+        compile 'org.dcm4che:dcm4che-core:5.18.1'
+        compile 'org.dcm4che:dcm4che-net:5.18.1'
+    }
+
+}

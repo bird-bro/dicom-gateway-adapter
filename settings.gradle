@@ -1,0 +1,7 @@
+//rootProject.name = 'adapter'
+include 'adapter'
+include 'gateway_util'
+include 'adapter_util'
+
+
+
