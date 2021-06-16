@@ -1,1 +1,1 @@
-# gateway-adapter
+# dicom-gateway-adapter
