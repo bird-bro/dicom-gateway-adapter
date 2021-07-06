@@ -1,5 +1,5 @@
 dependencies {
     compile 'com.google.protobuf:protobuf-java:3.7.1'
     compile "com.github.red1408:deid-redactor:233908ca"
-    compile "org.dcm4che:dcm4che-imageio:5.18.1"
+    implementation group: 'net.sf.ehcache', name: 'ehcache', version: '2.10.6'
 }

@@ -9,24 +9,41 @@ subprojects {
 
     repositories {
         mavenCentral()
-        maven { url 'https://packages.aliyun.com/maven/repository/2006123-release-E5ueqt/'
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        maven {
+            url 'https://packages.aliyun.com/maven/repository/2110267-release-w5nbJK/'
             credentials {
                 username '5ec22f39723771c6a5cbeb92'
-                password 'B3JvvP(aVxN7'
-            }}
-        maven { url 'http://maven.dcm4che.org/' }
-        maven{ url 'https://repo.maven.apache.org/maven2'}
+                password 'BdcjaGxPHYtO'
+            }
+        }
     }
 
     dependencies {
+        compile 'ch.qos.logback:logback-core:1.2.3'
+        testCompile 'org.slf4j:slf4j-simple:1.7.25'
+        implementation 'org.projectlombok:lombok:1.18.8'
+        annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
+        compile 'org.dcm4che:dcm4che-core:5.18.1'
+        compile 'org.dcm4che:dcm4che-net:5.18.1'
+        compile "org.dcm4che:dcm4che-imageio-opencv:5.18.1"
+        compile "org.dcm4che:dcm4che-imageio:5.18.1"
+        compile 'org.weasis.opencv:weasis-opencv-core:3.5.3'
+        runtime "org.dcm4che:dcm4che-imageio-rle:5.18.1"
+
         annotationProcessor 'org.projectlombok:lombok:1.18.20'
         compile 'ch.qos.logback:logback-core:1.2.3'
         compile 'org.slf4j:slf4j-simple:1.7.25'
         compile 'org.projectlombok:lombok:1.18.20'
         compile 'cn.hutool:hutool-http:5.6.5'
         compile "org.json:json:20210307"
-        compile 'org.dcm4che:dcm4che-core:5.18.1'
-        compile 'org.dcm4che:dcm4che-net:5.18.1'
+        compile "com.alibaba:fastjson:1.2.76"
+        compile "com.google.api-client:google-api-client:1.30.5"
+
+
     }
 
 }

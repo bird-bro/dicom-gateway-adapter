@@ -1,5 +1,5 @@
 //rootProject.name = 'adapter'
-include 'adapter'
+include 'import'
 include 'gateway_util'
 include 'adapter_util'
 

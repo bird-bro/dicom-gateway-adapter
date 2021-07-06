@@ -1,1 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+    <diskStore path="E:\OBS\ehcache" />
+    <defaultCache
+            maxEntriesLocalHeap="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            maxEntriesLocalDisk="10000000"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU">
+        <persistence strategy="localTempSwap"/>
+    </defaultCache>
+    <cache name="cache.stowrs"
+           maxElementsInMemory="1000"
+           eternal="false"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="3600"
+           overflowToDisk="true">
+    </cache>
+    <cache name="cache.token"
+           maxElementsInMemory="10"
+           eternal="false"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="2700"
+           overflowToDisk="false"/>
+</ehcache>

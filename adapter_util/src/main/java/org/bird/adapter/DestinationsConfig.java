@@ -2,7 +2,7 @@ package org.bird.adapter;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.bird.adapter.utils.JsonUtil;
+import org.bird.adapter.utils.JsonUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -27,7 +27,7 @@ public class DestinationsConfig {
      * @since 2021-3-1 13:16
      */
     public DestinationsConfig(String jsonInline, String jsonPath) throws IOException {
-        JSONArray jsonArray = JsonUtil.parseConfig(jsonInline, jsonPath, ENV_DESTINATION_CONFIG_JSON);
+        JSONArray jsonArray = JsonUtils.parseConfig(jsonInline, jsonPath, ENV_DESTINATION_CONFIG_JSON);
 
         if(jsonArray != null) {
             for (Object elem : jsonArray) {

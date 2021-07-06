@@ -193,8 +193,6 @@ public class DicomRedactor {
 
             //update UID
             dataset.setString(Tag.PatientID, VR.LO, clientUid + "-" + patId + "-" + acc);
-
-
             dataset.setString(Tag.StudyInstanceUID,VR.UI,studyId+"."+clientUid);
             dataset.setString(Tag.SeriesInstanceUID,VR.UI,seriesId+"."+clientUid);
             dataset.setString(Tag.SOPInstanceUID,VR.UI,sopId+"."+clientUid);

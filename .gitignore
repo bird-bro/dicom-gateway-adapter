@@ -1,3 +1,6 @@
 .idea/
 gradle/wrapper/
 .gradle/
+adapter_util/build/
+gateway_util/build/
+import/tmp/

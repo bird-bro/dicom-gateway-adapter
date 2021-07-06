@@ -2,7 +2,7 @@ package org.bird.adapter;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.bird.adapter.utils.JsonUtil;
+import org.bird.adapter.utils.JsonUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,7 +25,7 @@ public class AetDictionary {
      * @since 2021-3-1 13:26
      */
     public AetDictionary( String jsonInline, String jsonPath) throws IOException {
-        JSONArray jsonArray = JsonUtil.parseConfig(jsonInline, jsonPath, ENV_AETS_JSON);
+        JSONArray jsonArray = JsonUtils.parseConfig(jsonInline, jsonPath, ENV_AETS_JSON);
 
         if (jsonArray != null) {
             for (Object elem : jsonArray) {

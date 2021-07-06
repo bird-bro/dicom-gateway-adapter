@@ -1,1 +1,12 @@
 
+dependencies {
+    compile project(":adapter_util")
+
+    compile 'com.google.guava:guava:28.1-jre'
+    compile "com.google.inject:guice:4.1.0"
+    compile "org.apache.commons:commons-lang3:3.4"
+//    compile "org.apache.httpcomponents:httpclient:4.5.10"
+//    compile "org.apache.httpcomponents:httpcore:4.4.12"
+    compile "org.eclipse.jetty.http2:http2-client:9.4.20.v20190813"
+    compile "org.eclipse.jetty:jetty-alpn-java-client:9.4.20.v20190813"
+}
