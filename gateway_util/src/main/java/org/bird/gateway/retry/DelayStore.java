@@ -15,7 +15,7 @@ import java.util.Date;
  * @date 2021-7-2 14:53
  **/
 @Slf4j
-public class DelayStore {
+public class DelayStore implements Closeable{
 
     private static final Flags CONFIG =  Configurator.Configurator();
     public final InputStream sourceStream;
@@ -65,6 +65,12 @@ public class DelayStore {
     public final void toDelayRetry() {
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmssSSS");
         DelayStore.toTask(format.format(new Date()), backupStream);
+    }
+
+    @Override
+    public void close() throws IOException {
+        if (sourceStream != null) {sourceStream.close();}
+        if (backupStream != null) {backupStream.close();}
     }
 
 

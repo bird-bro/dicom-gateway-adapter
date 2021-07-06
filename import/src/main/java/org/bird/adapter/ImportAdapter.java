@@ -114,8 +114,7 @@ public class ImportAdapter {
             public void run() {
                 GatewayApi.postHeartbeat();
             }
-        }, 1000L, 60000L);
-
+        },1000L, 60000L);
     }
 
 

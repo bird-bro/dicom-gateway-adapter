@@ -157,6 +157,7 @@ public class GatewayClient implements IGatewayClient{
                 if((resp) != null){
                     resp.disconnect();
                 }
+                delayStore.close();
             }catch (IOException e) {
                 throw new IGatewayClient.DicomGatewayException(e);
             }

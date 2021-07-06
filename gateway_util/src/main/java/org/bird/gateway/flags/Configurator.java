@@ -45,7 +45,7 @@ public class Configurator {
             flags.setGatewayApiOauth(properties.getProperty("gateway.api.oauth"));
             flags.setClientUID(properties.getProperty("client.uid"));
 
-            if(Boolean.valueOf(properties.getProperty("client.online"))){
+            if(Boolean.parseBoolean(properties.getProperty("client.online"))){
 
             }else {
                 flags.setArchiveAddress(properties.getProperty("archive.address"));
@@ -54,8 +54,6 @@ public class Configurator {
 
             flags.setDimseAET(properties.getProperty("dimse.aet"));
             flags.setDimsePort(Integer.valueOf(properties.getProperty("dimse.port")));
-
-
             flags.setFileRetry(properties.getProperty("file.retry"));
             flags.setFileUploadCache(properties.getProperty("file.upload.cache"));
             flags.setFileUploadRetry(Integer.valueOf(properties.getProperty("file.upload.retry")));
