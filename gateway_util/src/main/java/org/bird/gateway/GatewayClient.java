@@ -113,17 +113,8 @@ public class GatewayClient implements IGatewayClient{
         HttpResponse resp = null;
 
         try {
-            String token = GatewayUtils.getToken();
             HttpRequest httpRequest = requestFactory.buildPostRequest(url, content);
             httpRequest.setConnectTimeout(15000);
-            JSONObject headerJson = genReqDate(FLAGS.getClientAk(), FLAGS.getClientSk());
-            if (token != null && !token.isBlank()) {
-                httpRequest.getHeaders().set("Authorization-" + FLAGS.getClientEnv(), token);
-                httpRequest.getHeaders().set("accessKey", headerJson.getString("accessKey"));
-                httpRequest.getHeaders().set("timestamp", headerJson.getString("timestamp"));
-                httpRequest.getHeaders().set("sign", headerJson.getString("sign"));
-                httpRequest.getHeaders().set("Accept", "application/dicom+json");
-            }
             log.info("--STOW-RS HEAD--:  " + httpRequest.getHeaders().toString());
             resp = httpRequest.execute();
             //Archive response
@@ -133,10 +124,9 @@ public class GatewayClient implements IGatewayClient{
                     delayStore.toDelayRetry();
                     return;
                 }
-
                 //解析,MQ
-                ResponseMessage message = new StowResponseUtils(resp.getStatusCode(), resp.getContent()).responseMessage();
-                GatewayUtils.postStowRSMessage(message);
+//                ResponseMessage message = new StowResponseUtils(resp.getStatusCode(), resp.getContent()).responseMessage();
+//                GatewayUtils.postStowRSMessage(message);
             }
         } catch (HttpResponseException e) {
             log.error(String.format("Service error: %s", e.getMessage()));

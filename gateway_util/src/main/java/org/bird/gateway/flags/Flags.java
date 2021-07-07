@@ -10,16 +10,6 @@ import java.util.List;
 @Data
 public class Flags {
 
-    /**
-     * Address for Dicom Gateway service.
-     */
-    String gatewayApi = "";
-    String gatewayApiOauth = "";
-    String clientAk = "";
-    String clientSk = "";
-    String clientEnv = "";
-
-
 
     /**
      * terminal UID

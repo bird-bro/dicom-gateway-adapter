@@ -106,12 +106,6 @@ public class ImportAdapter {
                 RetryStoreService.getInstance(defaultCstoreGatewayClient).stowRs(filePath);
             }
         });
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                GatewayUtils.postHeartbeat();
-            }
-        },1000L, 60000L);
     }
 
 

@@ -38,11 +38,6 @@ public class Configurator {
             in = new FileInputStream(confPath+PROPERTIES_NAME);
             properties.load(in);
 
-            flags.setClientAk(properties.getProperty("client.ak"));
-            flags.setClientSk(properties.getProperty("client.sk"));
-            flags.setClientEnv(properties.getProperty("client.env"));
-            flags.setGatewayApi(properties.getProperty("gateway.api"));
-            flags.setGatewayApiOauth(properties.getProperty("gateway.api.oauth"));
             flags.setClientUID(properties.getProperty("client.uid"));
 
             if(Boolean.parseBoolean(properties.getProperty("client.online"))){
