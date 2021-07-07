@@ -44,18 +44,14 @@ public class ImportAdapter {
 
     public static void main(String[] args) throws IOException, GeneralSecurityException {
         Flags flags = Configurator.Configurator();
-        log.info("Configuration loaded successfully!");
-
-        String archiveAddress = GatewayValidation.validatePath(flags.getArchiveAddress(),GatewayValidation.DICOMWEB_ROOT_VALIDATION);
         HttpRequestFactory requestFactory = new NetHttpTransport().createRequestFactory();
-
 
         // Dicom service handlers
         DicomServiceRegistry serviceRegistry = new DicomServiceRegistry();
         // Handle C-ECHO (all nodes which accept associations must support this)
         serviceRegistry.addDicomService(new BasicCEchoSCP());
         // Handle C-STORE
-        String cstoreAddr = archiveAddress;
+        String cstoreAddr = flags.getArchiveAddress();
         String cstorePath = STUDIES;
         String cstoreSubAet = flags.getDimseAET();
 

@@ -65,7 +65,7 @@ public class StowResponseUtils {
             while ((line = reader.readLine()) != null) {
                 jsonResult.append(line);
             }
-            log.info("调用Archive-STOW_RS,return json:{}", jsonResult.toString());
+            log.info("--Archive-STOW_RS--:{}", jsonResult.toString());
 
             ArchiveInfoEnum infoEnum = (analyzeResultJson(jsonResult.toString(), uploadMessage));
             responseMessage.setCode(infoEnum.getCode());

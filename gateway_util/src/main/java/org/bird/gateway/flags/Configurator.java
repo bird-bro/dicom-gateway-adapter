@@ -32,7 +32,7 @@ public class Configurator {
         try {
             Flags flags = new Flags();
             String confPath = System.getProperty("user.dir");
-            log.info("ConfigPath: " + confPath);
+            log.info("ConfigPath:" + confPath);
 
             Properties properties = new Properties();
             in = new FileInputStream(confPath+PROPERTIES_NAME);
@@ -59,17 +59,17 @@ public class Configurator {
             flags.setFileUploadRetry(Integer.valueOf(properties.getProperty("file.upload.retry")));
             flags.setTranscodeToSyntax(properties.getProperty("file.transcode"));
 
+            log.info("Configuration loaded successfully!");
             return flags;
-
         }catch (IOException e){
-            log.error(e.getMessage());
+            log.error("Configuration loaded error! -- {}",e.getMessage());
             return null;
         }finally {
             if(in != null){
                 try {
                     in.close();
                 }catch (IOException e){
-                    log.error(e.getMessage());
+                    log.error("Configuration close error! -- {}",e.getMessage());
                 }
             }
         }

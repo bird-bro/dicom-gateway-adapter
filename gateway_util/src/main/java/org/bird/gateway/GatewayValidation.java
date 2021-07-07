@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 @Slf4j
 public class GatewayValidation {
 
-    private static String DICOMWEB_PATH = "https:\\/\\/demo-dcm.rimagcloud.com\\/.*?\\/projects\\/.*?\\/locations\\/.*?\\/datasets\\/.*?\\/dicomStores\\/.*?\\/dicomWeb";
+    private static String DICOMWEB_PATH = "https:\\/\\/demo-dcm.rimagdata.com\\/.*?\\/projects\\/.*?\\/locations\\/.*?\\/datasets\\/.*?\\/dicomStores\\/.*?\\/dicomWeb";
     private static String HEALTHCARE_API_ROOT ="http";
 
     public static ValidationPattern DICOMWEB_ROOT_VALIDATION =

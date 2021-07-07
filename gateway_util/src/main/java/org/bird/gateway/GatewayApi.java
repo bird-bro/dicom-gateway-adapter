@@ -85,7 +85,7 @@ public class GatewayApi {
             log.info("--Stow Message JSON--" + jsonObject.toJSONString());
             String token = getToken();
             JSONObject response = API_UTILS.doPost(url, token, jsonObject.toJSONString(), FLAGS.getClientAk(), FLAGS.getClientSk(), FLAGS.getClientEnv());
-            log.info("PostStowRSMessage: " + response.toJSONString());
+            log.info("--PostStowRSMessage-- " + response.toJSONString());
 
             if (200 == response.getInteger("statusCode")) {
                 CACHE_STOW_RS.Put(seriesUid, SIMPLE_DATE.format(new Date()));
