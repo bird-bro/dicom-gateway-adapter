@@ -17,7 +17,7 @@ import java.util.Date;
 @Slf4j
 public class DelayStore implements Closeable{
 
-    private static final Flags CONFIG =  Configurator.Configurator();
+    private static final Flags CONFIG =  Configurator.configurator();
     public final InputStream sourceStream;
     public final  InputStream backupStream;
 

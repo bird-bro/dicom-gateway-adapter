@@ -8,6 +8,7 @@ import org.bird.gateway.entity.ResponseMessage;
 import org.bird.gateway.flags.Configurator;
 import org.bird.gateway.flags.Flags;
 import org.bird.gateway.retry.DelayStore;
+import org.bird.gateway.utils.GatewayUtils;
 import org.bird.gateway.utils.StowResponseUtils;
 import org.bird.gateway.utils.StringUtils;
 import org.dcm4che3.net.Status;
@@ -16,10 +17,8 @@ import org.json.JSONArray;
 import java.io.*;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.UUID;
-import static org.bird.gateway.utils.GatewayApiUtils.genReqDate;
+import static org.bird.gateway.utils.ApiUtils.genReqDate;
 
 /**
  * @author bird
@@ -28,7 +27,7 @@ import static org.bird.gateway.utils.GatewayApiUtils.genReqDate;
 @Slf4j
 public class GatewayClient implements IGatewayClient{
 
-    private static final Flags FLAGS = Configurator.Configurator();
+    private static final Flags FLAGS = Configurator.configurator();
 
 
     // Factory to create HTTP requests with proper credentials.
@@ -114,7 +113,7 @@ public class GatewayClient implements IGatewayClient{
         HttpResponse resp = null;
 
         try {
-            String token = GatewayApi.getToken();
+            String token = GatewayUtils.getToken();
             HttpRequest httpRequest = requestFactory.buildPostRequest(url, content);
             httpRequest.setConnectTimeout(15000);
             JSONObject headerJson = genReqDate(FLAGS.getClientAk(), FLAGS.getClientSk());
@@ -137,7 +136,7 @@ public class GatewayClient implements IGatewayClient{
 
                 //解析,MQ
                 ResponseMessage message = new StowResponseUtils(resp.getStatusCode(), resp.getContent()).responseMessage();
-                GatewayApi.postStowRSMessage(message);
+                GatewayUtils.postStowRSMessage(message);
             }
         } catch (HttpResponseException e) {
             log.error(String.format("Service error: %s", e.getMessage()));

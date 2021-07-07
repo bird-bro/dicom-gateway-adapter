@@ -20,6 +20,7 @@ import org.bird.adapter.utils.JsonUtils;
 import org.bird.gateway.*;
 import org.bird.gateway.flags.Flags;
 import org.bird.gateway.flags.Configurator;
+import org.bird.gateway.utils.GatewayUtils;
 import org.bird.gateway.utils.StringUtils;
 import org.dcm4che3.net.Device;
 import org.dcm4che3.net.service.BasicCEchoSCP;
@@ -43,7 +44,7 @@ public class ImportAdapter {
 
 
     public static void main(String[] args) throws IOException, GeneralSecurityException {
-        Flags flags = Configurator.Configurator();
+        Flags flags = Configurator.configurator();
         HttpRequestFactory requestFactory = new NetHttpTransport().createRequestFactory();
 
         // Dicom service handlers
@@ -108,7 +109,7 @@ public class ImportAdapter {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                GatewayApi.postHeartbeat();
+                GatewayUtils.postHeartbeat();
             }
         },1000L, 60000L);
     }

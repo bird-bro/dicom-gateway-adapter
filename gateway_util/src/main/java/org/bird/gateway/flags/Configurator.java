@@ -4,7 +4,7 @@ package org.bird.gateway.flags;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.bird.gateway.utils.GatewayApiUtils;
+import org.bird.gateway.utils.ApiUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,20 +14,20 @@ import java.util.Properties;
 @Data
 @Slf4j
 public class Configurator {
-    private static final GatewayApiUtils gatewayApiUtils = new GatewayApiUtils();
+    private static final ApiUtils gatewayApiUtils = new ApiUtils();
     private static final String PROPERTIES_NAME = new File("/config","application.properties").toString();
     protected static Flags instance;
 
 
-    public static Flags Configurator() {
+    public static Flags configurator() {
         if (instance == null) {
-            instance = SetFlags();
+            instance = setFlags();
         }
         return instance;
     }
 
 
-    private static Flags SetFlags(){
+    private static Flags setFlags(){
         FileInputStream in = null;
         try {
             Flags flags = new Flags();

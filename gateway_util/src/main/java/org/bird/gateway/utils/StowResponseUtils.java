@@ -24,7 +24,7 @@ import java.util.List;
  **/
 @Slf4j
 public class StowResponseUtils {
-    private static final Flags FLAGS = Configurator.Configurator();
+    private static final Flags FLAGS = Configurator.configurator();
     boolean retry = false;
     public final int code;
     public final InputStream stream;
