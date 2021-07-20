@@ -10,6 +10,8 @@ import org.dcm4che3.io.DicomOutputStream;
 import org.dcm4che3.util.UIDUtils;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class DicomRedactor {
@@ -191,11 +193,14 @@ public class DicomRedactor {
             String sopId = dataset.getString(Tag.SOPInstanceUID);
             String acc = dataset.getString(Tag.AccessionNumber);
 
+
             //update UID
             dataset.setString(Tag.PatientID, VR.LO, clientUid + "-" + patId + "-" + acc);
             dataset.setString(Tag.StudyInstanceUID,VR.UI,studyId+"."+clientUid);
             dataset.setString(Tag.SeriesInstanceUID,VR.UI,seriesId+"."+clientUid);
             dataset.setString(Tag.SOPInstanceUID,VR.UI,sopId+"."+clientUid);
+
+            dataset.setString(Tag.SpecificCharacterSet,VR.CS,"GB18030");
 
         }catch (Exception e) {
             throw new IOException("Failed to read input DICOM object", e);
