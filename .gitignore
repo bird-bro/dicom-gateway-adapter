@@ -2,6 +2,8 @@
 gradle/wrapper/
 .gradle/
 adapter_util/build/
+adapter_util/out/
 gateway_util/build/
+gateway_util/out/
 import/tmp/
 import/out/
