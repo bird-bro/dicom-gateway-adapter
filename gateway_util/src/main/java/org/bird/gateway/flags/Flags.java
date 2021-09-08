@@ -61,6 +61,11 @@ public class Flags {
     Integer fileUploadRetry = 0;
 
     /**
+     * save mpps stream
+     */
+    String fileMpps = "";
+
+    /**
      * Transfer Syntax to convert instances to during C-STORE upload. See Readme for list of supported syntaxes.
      */
     String transcodeToSyntax = "";

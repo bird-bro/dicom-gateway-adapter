@@ -77,7 +77,9 @@ public class ImportAdapter {
 
         CStoreService cStoreService =
                 new CStoreService(destinationClientFactory, redactor, flags.getTranscodeToSyntax(), multipleDestinationSendService);
+        MPPSService mppsService = new MPPSService(flags.getFileMpps());
         serviceRegistry.addDicomService(cStoreService);
+        serviceRegistry.addDicomService(mppsService);
 
 
         // Handle C-FIND

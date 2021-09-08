@@ -52,6 +52,7 @@ public class Configurator {
             flags.setFileRetry(properties.getProperty("file.retry"));
             flags.setFileUploadCache(properties.getProperty("file.upload.cache"));
             flags.setFileUploadRetry(Integer.valueOf(properties.getProperty("file.upload.retry")));
+            flags.setFileMpps(properties.getProperty("file.mpps"));
             flags.setTranscodeToSyntax(properties.getProperty("file.transcode"));
 
             log.info("Configuration loaded successfully!");
