@@ -1,6 +1,9 @@
 package org.bird.adapter;
 
 import lombok.extern.slf4j.Slf4j;
+import org.bird.adapter.cstore.destination.DestinationHolder;
+import org.bird.adapter.cstore.destination.IDestinationClientFactory;
+import org.bird.adapter.cstore.multipledest.IMultipleDestinationUploadService;
 import org.dcm4che3.data.Attributes;
 import org.dcm4che3.data.Tag;
 import org.dcm4che3.data.UID;
@@ -16,10 +19,32 @@ import java.io.*;
 
 @Slf4j
 public class MPPSService extends BasicMPPSSCP {
+    private final IDestinationClientFactory destinationClientFactory;
+    private final IMultipleDestinationUploadService multipleSendService;
     private File storageDir;
 
-    MPPSService(String storeDirPath) {
+    MPPSService(IDestinationClientFactory destinationClientFactory,
+                String storeDirPath,
+                IMultipleDestinationUploadService multipleSendService) {
+        this.destinationClientFactory = destinationClientFactory;
         this.storageDir = new File(storeDirPath);
+        this.multipleSendService = multipleSendService;
+    }
+
+    private void stowRs(File file, String sopClassUID, String sopInstanceUID, String aet) {
+        try {
+            InputStream in = new DicomInputStream(file);
+            DestinationHolder destinationHolder = destinationClientFactory.create(aet, in);
+            multipleSendService.start(
+                    destinationHolder.getHealthcareDestinations(),
+                    destinationHolder.getDicomDestinations(),
+                    in,
+                    sopClassUID,
+                    sopInstanceUID
+            );
+        } catch (Exception e) {
+            log.trace("Error: ", e);
+        }
     }
 
     @Override
@@ -44,6 +69,8 @@ public class MPPSService extends BasicMPPSSCP {
         } finally {
             SafeClose.close(out);
         }
+
+        stowRs(file, cuid, iuid, as.getCallingAET());
 
         return super.create(as, rq, rqAttrs, rsp);
     }
@@ -84,6 +111,8 @@ public class MPPSService extends BasicMPPSSCP {
         } finally {
             SafeClose.close(out);
         }
+
+        stowRs(file, cuid, iuid, as.getCallingAET());
 
         return super.set(as, rq, rqAttrs, rsp);
     }
