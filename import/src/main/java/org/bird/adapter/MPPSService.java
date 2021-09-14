@@ -35,13 +35,14 @@ public class MPPSService extends BasicMPPSSCP {
         try {
             InputStream in = new DicomInputStream(file);
             DestinationHolder destinationHolder = destinationClientFactory.create(aet, in);
-            multipleSendService.start(
-                    destinationHolder.getHealthcareDestinations(),
-                    destinationHolder.getDicomDestinations(),
-                    in,
-                    sopClassUID,
-                    sopInstanceUID
-            );
+//            multipleSendService.start(
+//                    destinationHolder.getHealthcareDestinations(),
+//                    destinationHolder.getDicomDestinations(),
+//                    in,
+//                    sopClassUID,
+//                    sopInstanceUID
+//            );
+            destinationHolder.getSingleDestination().stowRs(in);
         } catch (Exception e) {
             log.trace("Error: ", e);
         }
@@ -72,7 +73,7 @@ public class MPPSService extends BasicMPPSSCP {
 
         stowRs(file, cuid, iuid, as.getCallingAET());
 
-        return super.create(as, rq, rqAttrs, rsp);
+        return null;
     }
 
     @Override
@@ -114,6 +115,6 @@ public class MPPSService extends BasicMPPSSCP {
 
         stowRs(file, cuid, iuid, as.getCallingAET());
 
-        return super.set(as, rq, rqAttrs, rsp);
+        return null;
     }
 }
