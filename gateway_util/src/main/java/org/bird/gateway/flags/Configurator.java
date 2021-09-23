@@ -47,6 +47,7 @@ public class Configurator {
                 flags.setArchiveUrl(properties.getProperty("archive.url"));
             }
 
+            flags.setMppsUrl(properties.getProperty("mpps.url"));
             flags.setDimseAET(properties.getProperty("dimse.aet"));
             flags.setDimsePort(Integer.valueOf(properties.getProperty("dimse.port")));
             flags.setFileRetry(properties.getProperty("file.retry"));

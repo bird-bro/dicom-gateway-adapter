@@ -33,6 +33,13 @@ public interface IGatewayClient {
      */
     void stowRs(InputStream in) throws IOException, DicomGatewayException;
 
+    /**
+     * mpps
+     * @params path
+     * @since 2021-3-1 9:18
+     */
+    void sendMpps(InputStream in, String cmd) throws IOException, DicomGatewayException;
+
 
     /**
      * An exception for errors returned by the Dicom Gateway server.

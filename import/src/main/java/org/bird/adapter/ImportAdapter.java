@@ -52,15 +52,13 @@ public class ImportAdapter {
         // Handle C-ECHO (all nodes which accept associations must support this)
         serviceRegistry.addDicomService(new BasicCEchoSCP());
         // Handle C-STORE
-        String cstoreAddr = flags.getArchiveAddress();
-        String cstorePath = STUDIES;
         String cstoreSubAet = flags.getDimseAET();
 
         if (cstoreSubAet == null || cstoreSubAet.isBlank()) {
             throw new IllegalArgumentException("-- dimse_aet flag must be set.");
         }
 
-        IGatewayClient defaultCstoreGatewayClient = configureDefaultGatewayClient(requestFactory, cstoreAddr, cstorePath, flags);
+        IGatewayClient defaultCstoreGatewayClient = configureDefaultGatewayClient(requestFactory, flags);
 
         DicomRedactor redactor = configureRedactor(flags);
 
@@ -83,7 +81,7 @@ public class ImportAdapter {
 
 
         // Handle C-FIND
-        IGatewayClient dicomWebClient = new GatewayClient(requestFactory, flags.getArchiveAddress(), STUDIES);
+        IGatewayClient dicomWebClient = new GatewayClient(requestFactory, flags.getMppsUrl(), flags.getArchiveAddress(), STUDIES);
         CFindService cFindService = new CFindService(dicomWebClient, flags);
         serviceRegistry.addDicomService(cFindService);
 
@@ -131,14 +129,13 @@ public class ImportAdapter {
 
     private static IGatewayClient configureDefaultGatewayClient(
             HttpRequestFactory requestFactory,
-            String cstoreDicomWebAddr,
-            String cstoreDicomWebStowPath,
             Flags flags){
+        String archiveUrl = flags.getArchiveUrl();
         IGatewayClient defaultCstoreGatewayClient;
         if(flags.getUseHttp2ForStow()){
-            defaultCstoreGatewayClient = new GatewayClientJetty(StringUtils.joinPath(cstoreDicomWebAddr, cstoreDicomWebStowPath));
+            defaultCstoreGatewayClient = new GatewayClientJetty(StringUtils.joinPath(archiveUrl, STUDIES));
         }else {
-            defaultCstoreGatewayClient = new GatewayClient(requestFactory, cstoreDicomWebAddr, cstoreDicomWebStowPath);
+            defaultCstoreGatewayClient = new GatewayClient(requestFactory, flags.getMppsUrl(), archiveUrl, STUDIES);
         }
         return defaultCstoreGatewayClient;
     }

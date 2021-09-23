@@ -50,6 +50,11 @@ public class GatewayClientJetty implements IGatewayClient{
     }
 
     @Override
+    public void sendMpps(InputStream in, String cmd) throws IGatewayClient.DicomGatewayException {
+        throw new UnsupportedOperationException("not implemented, use GatewayClient");
+    }
+
+    @Override
     public void stowRs(InputStream in) throws DicomGatewayException {
         try {
             log.debug("STOW-RS to: " + stowPath);

@@ -46,6 +46,11 @@ public class Flags {
     String archiveUrl = "";
 
     /**
+     * mpps address url.
+     */
+    String mppsUrl = "";
+
+    /**
      * file upload retry。
      */
     String fileRetry="";
