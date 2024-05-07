@@ -104,7 +104,8 @@ public class GatewayClient implements IGatewayClient{
         DelayStore delayStore = new DelayStore(in);
         InputStream inputStream = delayStore.sourceStream;
 
-        GenericUrl url = new GenericUrl(StringUtils.joinPath(serviceUrlPrefix, this.stowPath));
+        //GenericUrl url = new GenericUrl(StringUtils.joinPath(serviceUrlPrefix, this.stowPath));
+        GenericUrl url = new GenericUrl("http://172.16.55.20:8080/dcm4chee-arc/aets/DCM4CHEE/rs/studies");
 
         MultipartContent content = new MultipartContent();
         content.setMediaType(new HttpMediaType("multipart/related; type=\"application/dicom\""));

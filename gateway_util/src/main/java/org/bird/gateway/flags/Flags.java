@@ -29,7 +29,7 @@ public class Flags {
     /**
      * Title of DIMSE Application Entity.
      */
-    String dimseAET = "";
+    String dimseAET = "bird";
     /**
      * Port the server is listening to for incoming DIMSE requests.
      */

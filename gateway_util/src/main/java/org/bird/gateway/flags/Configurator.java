@@ -41,8 +41,6 @@ public class Configurator {
             flags.setClientUID(properties.getProperty("client.uid"));
 
             if(Boolean.parseBoolean(properties.getProperty("client.online"))){
-
-            }else {
                 flags.setArchiveAddress(properties.getProperty("archive.address"));
                 flags.setArchiveUrl(properties.getProperty("archive.url"));
             }
